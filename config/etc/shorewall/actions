@@ -1,0 +1,4 @@
+#ACTION               OPTION                   DESCRIPTION
+SSHLIMIT                                       #Automatically blacklist hosts who exceed SSH connection limits
+SSH_BLACKLIST                                  #Helper for SSHLIMIT
+

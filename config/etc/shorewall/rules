@@ -1,0 +1,37 @@
+#############################################################################################################
+#ACTION        SOURCE        DEST    PROTO    DEST     SOURCE        ORIGINAL    RATE    USER/    MARK
+#                                             PORT     PORT(S)       DEST        LIMIT            GROUP
+#
+#    Accept DNS connections from the firewall to the Internet
+#
+DNS/ACCEPT     $FW           net
+#
+#
+#    Accept SSH connections from the local network and internet to the firewall
+#
+#SSH/ACCEPT     loc           $FW
+#SSH/ACCEPT     net           $FW
+SSHLIMIT	net 	$FW	tcp	22
+#
+# Drop Ping from the "bad" net zone.
+#
+#Ping/DROP      net           $FW
+#
+#     Make ping work bi-directionally between the dmz, net, Firewall and local zone
+#     (assumes that the loc-> net policy is ACCEPT).
+#
+Ping(ACCEPT)    loc           $FW
+Ping(ACCEPT)    net           $FW
+#
+#    Accepts http and https connection from the internet to the firewall
+#
+#
+#    Accept webmin port from the internet to the firewall
+#
+ACCEPT	loc	$FW	tcp	10000
+ACCEPT         net           $FW     tcp     10000
+HTTP/ACCEPT	net	$FW
+HTTPS/ACCEPT	net	$FW
+ACCEPT	net	$FW	tcp	3128
+ACCEPT	net	$FW	tcp	8080
+#LAST LINE -- ADD YOUR ENTRIES BEFORE THIS ONE -- DO NOT REMOVE

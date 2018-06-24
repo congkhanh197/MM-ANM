@@ -1,0 +1,27 @@
+#
+# Shorewall version 4 - SSHLIMIT Action
+#
+?format 2
+###############################################################################
+#TARGET        SOURCE    DEST    PROTO    DPORT    SPORT
+#
+# Silently reject the client if blacklisted
+#
+IfEvent(SSH_COUNTER,REJECT,300,1)
+#
+# Blacklist if 1 attempts in the last minute
+#
+IfEvent(SSH,SSH_BLACKLIST,60,1,src,check:reap)
+#
+# Log and reject if the client has tried to connect
+# in the last two seconds
+#
+IfEvent(SSH,REJECT:warn:,2,1,-,update,Added)
+#
+# Un-blacklist the client
+#
+ResetEvent(SSH_COUNTER,LOG:warn,-,Removed)
+#
+# Set the 'SSH' EVENT and accept the connection
+#
+SetEvent(SSH,ACCEPT,src)

@@ -1,0 +1,4 @@
+#ZONE    INTERFACE    BROADCAST       OPTIONS
+net      eth0         detect          tcpflags,dhcp,routefilter,nosmurfs,logmartians
+loc      eth1         detect          tcpflags,nosmurfs
+#LAST LINE -- ADD YOUR ENTRIES BEFORE THIS ONE -- DO NOT REMOVE

@@ -1,0 +1,18 @@
+#SOURCE        DEST        POLICY        LOG LEVEL    LIMIT:BURST
+#
+# Policies for traffic originating from the firewall ($FW)
+#
+# If you want open access to the Internet from your firewall, change the
+# $FW to net policy to ACCEPT and remove the 'info' LOG LEVEL.
+$FW        net        ACCEPT        
+$FW        loc        REJECT             info
+$FW        all        REJECT             info
+#
+# Policies for traffic originating from the Internet zone (net)
+#
+net        $FW        DROP               info
+net        loc        DROP               info
+net        all        DROP               info
+# THE FOLLOWING POLICY MUST BE LAST
+all        all        REJECT             info
+#LAST LINE -- ADD YOUR ENTRIES ABOVE THIS LINE -- DO NOT REMOVE

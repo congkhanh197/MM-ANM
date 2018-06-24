@@ -1,0 +1,15 @@
+#
+# Shorewall version 4 - SSH_BLACKLIST Action
+#
+?format 2
+###############################################################################
+#TARGET        SOURCE    DEST    PROTO    DPORT    SPORT
+#
+# Log the Reject
+#
+LOG:warn:REJECT
+#
+# And set the SSH_COUNTER event for the SOURCE IP address
+#
+SetEvent(SSH_COUNTER,REJECT,src)
+

@@ -1,0 +1,4 @@
+địa chỉ webmin server: https://167.99.71.183:10000/
+user: khang
+password: 1
+để sử dụng tường lửa sử dụng proxy của server 167.99.71.183:8080
